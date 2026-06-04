@@ -194,6 +194,27 @@ public class ArbolBinarioBusqueda {
         return 1 + (izquierda > derecha ? izquierda : derecha);
     }
 
+    public boolean esBSTValido() {
+        return esBSTValidoRecursivo(raiz, null, null);
+    }
+
+    private boolean esBSTValidoRecursivo(Nodo nodo, Integer minimo, Integer maximo) {
+        if (nodo == null) {
+            return true;
+        }
+
+        if (minimo != null && nodo.dato <= minimo) {
+            return false;
+        }
+
+        if (maximo != null && nodo.dato >= maximo) {
+            return false;
+        }
+
+        return esBSTValidoRecursivo(nodo.izquierdo, minimo, nodo.dato)
+                && esBSTValidoRecursivo(nodo.derecho, nodo.dato, maximo);
+    }
+
     public void inOrden() {
         inOrdenRecursivo(raiz);
         System.out.println();

@@ -88,5 +88,27 @@ public class Principal {
         desbalanceado.insertar(5);
 
         System.out.println("Arbol desbalanceado? " + desbalanceado.esBalanceado());
+
+        System.out.println("\n--- Problema 3: esBSTValido ---");
+
+        ArbolBinarioBusqueda bstValido = new ArbolBinarioBusqueda();
+        bstValido.insertar(50);
+        bstValido.insertar(30);
+        bstValido.insertar(70);
+        bstValido.insertar(20);
+        bstValido.insertar(40);
+        bstValido.insertar(60);
+        bstValido.insertar(80);
+
+        System.out.println("Arbol BST valido? " + bstValido.esBSTValido());
+
+        ArbolBinarioBusqueda bstRoto = new ArbolBinarioBusqueda();
+        bstRoto.insertar(50);
+        bstRoto.insertar(30);
+        bstRoto.insertar(70);
+
+        bstRoto.getRaiz().izquierdo.dato = 90;
+
+        System.out.println("Arbol BST roto? " + bstRoto.esBSTValido());
     }
 }
