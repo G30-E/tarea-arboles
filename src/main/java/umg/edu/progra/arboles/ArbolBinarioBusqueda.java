@@ -215,6 +215,26 @@ public class ArbolBinarioBusqueda {
                 && esBSTValidoRecursivo(nodo.derecho, nodo.dato, maximo);
     }
 
+    public int ancestroComunMasBajo(int a, int b) {
+        if (!contiene(a) || !contiene(b)) {
+            throw new IllegalArgumentException("Ambos valores deben existir en el arbol");
+        }
+
+        Nodo actual = raiz;
+
+        while (actual != null) {
+            if (a < actual.dato && b < actual.dato) {
+                actual = actual.izquierdo;
+            } else if (a > actual.dato && b > actual.dato) {
+                actual = actual.derecho;
+            } else {
+                return actual.dato;
+            }
+        }
+
+        throw new IllegalArgumentException("No se encontro ancestro comun");
+    }
+
     public void inOrden() {
         inOrdenRecursivo(raiz);
         System.out.println();

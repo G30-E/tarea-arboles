@@ -110,5 +110,27 @@ public class Principal {
         bstRoto.getRaiz().izquierdo.dato = 90;
 
         System.out.println("Arbol BST roto? " + bstRoto.esBSTValido());
+
+        System.out.println("\n--- Problema 4: ancestroComunMasBajo ---");
+
+        ArbolBinarioBusqueda lca = new ArbolBinarioBusqueda();
+        lca.insertar(50);
+        lca.insertar(30);
+        lca.insertar(70);
+        lca.insertar(20);
+        lca.insertar(40);
+        lca.insertar(60);
+        lca.insertar(80);
+        lca.insertar(10);
+
+        System.out.println("LCA de 10 y 40: " + lca.ancestroComunMasBajo(10, 40));
+        System.out.println("LCA de 10 y 80: " + lca.ancestroComunMasBajo(10, 80));
+        System.out.println("LCA de 60 y 80: " + lca.ancestroComunMasBajo(60, 80));
+
+        try {
+            System.out.println("LCA de 10 y 99: " + lca.ancestroComunMasBajo(10, 99));
+        } catch (IllegalArgumentException e) {
+            System.out.println("LCA de 10 y 99: " + e.getMessage());
+        }
     }
 }
