@@ -235,6 +235,23 @@ public class ArbolBinarioBusqueda {
         throw new IllegalArgumentException("No se encontro ancestro comun");
     }
 
+    public void invertir() {
+        invertirRecursivo(raiz);
+    }
+
+    private void invertirRecursivo(Nodo nodo) {
+        if (nodo == null) {
+            return;
+        }
+
+        Nodo temporal = nodo.izquierdo;
+        nodo.izquierdo = nodo.derecho;
+        nodo.derecho = temporal;
+
+        invertirRecursivo(nodo.izquierdo);
+        invertirRecursivo(nodo.derecho);
+    }
+
     public void inOrden() {
         inOrdenRecursivo(raiz);
         System.out.println();

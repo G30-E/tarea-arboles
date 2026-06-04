@@ -132,5 +132,29 @@ public class Principal {
         } catch (IllegalArgumentException e) {
             System.out.println("LCA de 10 y 99: " + e.getMessage());
         }
+
+        System.out.println("\n--- Problema 5: invertir ---");
+
+        ArbolBinarioBusqueda espejo = new ArbolBinarioBusqueda();
+        espejo.insertar(50);
+        espejo.insertar(30);
+        espejo.insertar(70);
+        espejo.insertar(20);
+        espejo.insertar(40);
+        espejo.insertar(60);
+        espejo.insertar(80);
+        espejo.insertar(10);
+
+        System.out.println("Antes de invertir:");
+        espejo.imprimirArbol();
+        System.out.print("InOrden antes: ");
+        espejo.inOrden();
+
+        espejo.invertir();
+
+        System.out.println("Despues de invertir:");
+        espejo.imprimirArbol();
+        System.out.print("InOrden despues: ");
+        espejo.inOrden();
     }
 }
