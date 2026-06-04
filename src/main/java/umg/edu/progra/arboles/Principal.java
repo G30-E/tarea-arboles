@@ -66,5 +66,27 @@ public class Principal {
         System.out.println("\n--- Problema 1 despues de eliminar ---");
         System.out.println("Nodos recursivos final: " + arbol.contarNodos());
         System.out.println("Coincide con tamanio final? " + (arbol.contarNodos() == arbol.tamanio()));
+
+        System.out.println("\n--- Problema 2: esBalanceado ---");
+
+        ArbolBinarioBusqueda balanceado = new ArbolBinarioBusqueda();
+        balanceado.insertar(50);
+        balanceado.insertar(30);
+        balanceado.insertar(70);
+        balanceado.insertar(20);
+        balanceado.insertar(40);
+        balanceado.insertar(60);
+        balanceado.insertar(80);
+
+        System.out.println("Arbol balanceado? " + balanceado.esBalanceado());
+
+        ArbolBinarioBusqueda desbalanceado = new ArbolBinarioBusqueda();
+        desbalanceado.insertar(1);
+        desbalanceado.insertar(2);
+        desbalanceado.insertar(3);
+        desbalanceado.insertar(4);
+        desbalanceado.insertar(5);
+
+        System.out.println("Arbol desbalanceado? " + desbalanceado.esBalanceado());
     }
 }

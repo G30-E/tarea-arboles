@@ -163,6 +163,37 @@ public class ArbolBinarioBusqueda {
         return 1 + contarNodosRecursivo(nodo.izquierdo) + contarNodosRecursivo(nodo.derecho);
     }
 
+    public boolean esBalanceado() {
+        return alturaBalanceada(raiz) != -2;
+    }
+
+    private int alturaBalanceada(Nodo nodo) {
+        if (nodo == null) {
+            return -1;
+        }
+
+        int izquierda = alturaBalanceada(nodo.izquierdo);
+        if (izquierda == -2) {
+            return -2;
+        }
+
+        int derecha = alturaBalanceada(nodo.derecho);
+        if (derecha == -2) {
+            return -2;
+        }
+
+        int diferencia = izquierda - derecha;
+        if (diferencia < 0) {
+            diferencia = diferencia * -1;
+        }
+
+        if (diferencia > 1) {
+            return -2;
+        }
+
+        return 1 + (izquierda > derecha ? izquierda : derecha);
+    }
+
     public void inOrden() {
         inOrdenRecursivo(raiz);
         System.out.println();
