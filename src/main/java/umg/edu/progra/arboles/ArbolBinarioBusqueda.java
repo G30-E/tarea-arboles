@@ -1,18 +1,5 @@
 package umg.edu.progra.arboles;
 
-/**
- * Arbol Binario de Busqueda (BST) implementado manualmente,
- * sin utilizar java.util ni librerias externas.
- *
- * Reglas del BST:
- *  - Para cada nodo N, todos los valores del subarbol izquierdo
- *    son MENORES que N.dato.
- *  - Para cada nodo N, todos los valores del subarbol derecho
- *    son MAYORES que N.dato.
- *  - No se permiten duplicados (se ignoran al insertar).
- *
- * @author Walter Cordova
- */
 public class ArbolBinarioBusqueda {
 
     private Nodo raiz;
@@ -35,10 +22,6 @@ public class ArbolBinarioBusqueda {
         return tamanio;
     }
 
-    /**
-     * Inserta un valor en el arbol respetando la propiedad del BST.
-     * Si el valor ya existe se ignora (no se insertan duplicados).
-     */
     public void insertar(int valor) {
         if (raiz == null) {
             raiz = new Nodo(valor);
@@ -61,10 +44,6 @@ public class ArbolBinarioBusqueda {
         return actual;
     }
 
-    /**
-     * Busca un valor dentro del arbol. Devuelve el Nodo si existe
-     * o null si no se encuentra.
-     */
     public Nodo buscar(int valor) {
         return buscarRecursivo(raiz, valor);
     }
@@ -86,13 +65,6 @@ public class ArbolBinarioBusqueda {
         return buscar(valor) != null;
     }
 
-    /**
-     * Elimina un valor del arbol. Cubre los 3 casos clasicos:
-     *  1. Nodo hoja (sin hijos)
-     *  2. Nodo con un solo hijo
-     *  3. Nodo con dos hijos (se reemplaza por el sucesor inorden:
-     *     el menor del subarbol derecho).
-     */
     public boolean eliminar(int valor) {
         int tamanioPrevio = tamanio;
         raiz = eliminarRecursivo(raiz, valor);
@@ -108,7 +80,6 @@ public class ArbolBinarioBusqueda {
         } else if (valor > actual.dato) {
             actual.derecho = eliminarRecursivo(actual.derecho, valor);
         } else {
-            // Nodo encontrado
             if (actual.izquierdo == null && actual.derecho == null) {
                 tamanio--;
                 return null;
@@ -121,7 +92,6 @@ public class ArbolBinarioBusqueda {
                 tamanio--;
                 return actual.izquierdo;
             }
-            // Nodo con dos hijos: se reemplaza con el sucesor inorden
             int sucesor = minimo(actual.derecho);
             actual.dato = sucesor;
             actual.derecho = eliminarRecursivo(actual.derecho, sucesor);
@@ -129,9 +99,6 @@ public class ArbolBinarioBusqueda {
         return actual;
     }
 
-    /**
-     * Devuelve el valor minimo del arbol (el nodo mas a la izquierda).
-     */
     public int minimo() {
         if (raiz == null) {
             throw new IllegalStateException("El arbol esta vacio");
@@ -147,9 +114,6 @@ public class ArbolBinarioBusqueda {
         return actual.dato;
     }
 
-    /**
-     * Devuelve el valor maximo del arbol (el nodo mas a la derecha).
-     */
     public int maximo() {
         if (raiz == null) {
             throw new IllegalStateException("El arbol esta vacio");
@@ -161,11 +125,6 @@ public class ArbolBinarioBusqueda {
         return actual.dato;
     }
 
-    /**
-     * Altura del arbol: cantidad de aristas del camino mas largo
-     * desde la raiz hasta una hoja. Un arbol vacio tiene altura -1.
-     * Un arbol con solo raiz tiene altura 0.
-     */
     public int altura() {
         return alturaRecursiva(raiz);
     }
@@ -179,9 +138,6 @@ public class ArbolBinarioBusqueda {
         return 1 + (izq > der ? izq : der);
     }
 
-    /**
-     * Cuenta cuantos nodos hoja (sin hijos) tiene el arbol.
-     */
     public int contarHojas() {
         return contarHojasRecursivo(raiz);
     }
@@ -196,14 +152,17 @@ public class ArbolBinarioBusqueda {
         return contarHojasRecursivo(nodo.izquierdo) + contarHojasRecursivo(nodo.derecho);
     }
 
-    // ============================================================
-    // RECORRIDOS DEL ARBOL
-    // ============================================================
+    public int contarNodos() {
+        return contarNodosRecursivo(raiz);
+    }
 
-    /**
-     * Recorrido InOrden: Izquierdo -> Raiz -> Derecho.
-     * En un BST imprime los valores ordenados de menor a mayor.
-     */
+    private int contarNodosRecursivo(Nodo nodo) {
+        if (nodo == null) {
+            return 0;
+        }
+        return 1 + contarNodosRecursivo(nodo.izquierdo) + contarNodosRecursivo(nodo.derecho);
+    }
+
     public void inOrden() {
         inOrdenRecursivo(raiz);
         System.out.println();
@@ -218,10 +177,6 @@ public class ArbolBinarioBusqueda {
         inOrdenRecursivo(nodo.derecho);
     }
 
-    /**
-     * Recorrido PreOrden: Raiz -> Izquierdo -> Derecho.
-     * Util para clonar el arbol.
-     */
     public void preOrden() {
         preOrdenRecursivo(raiz);
         System.out.println();
@@ -236,10 +191,6 @@ public class ArbolBinarioBusqueda {
         preOrdenRecursivo(nodo.derecho);
     }
 
-    /**
-     * Recorrido PostOrden: Izquierdo -> Derecho -> Raiz.
-     * Util para liberar/eliminar el arbol.
-     */
     public void postOrden() {
         postOrdenRecursivo(raiz);
         System.out.println();
@@ -254,10 +205,6 @@ public class ArbolBinarioBusqueda {
         System.out.print(nodo.dato + " ");
     }
 
-    /**
-     * Recorrido por niveles (BFS) implementado con una cola casera
-     * (sin usar java.util). Imprime el arbol por anchura.
-     */
     public void recorridoPorNiveles() {
         if (raiz == null) {
             System.out.println();
@@ -278,10 +225,6 @@ public class ArbolBinarioBusqueda {
         System.out.println();
     }
 
-    /**
-     * Imprime el arbol de forma jerarquica y visual en consola
-     * (rotado 90 grados: la raiz queda a la izquierda).
-     */
     public void imprimirArbol() {
         if (raiz == null) {
             System.out.println("(arbol vacio)");
@@ -301,11 +244,6 @@ public class ArbolBinarioBusqueda {
         System.out.println("-> " + nodo.dato);
         imprimirArbolRecursivo(nodo.izquierdo, nivel + 1);
     }
-
-    // ============================================================
-    // COLA INTERNA (lista enlazada simple) usada para BFS.
-    // Se implementa aqui para NO depender de java.util.
-    // ============================================================
 
     private static class NodoCola {
         Nodo valor;

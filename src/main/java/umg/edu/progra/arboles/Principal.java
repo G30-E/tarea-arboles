@@ -1,32 +1,11 @@
 package umg.edu.progra.arboles;
 
-/**
- * Clase principal que demuestra el uso del Arbol Binario de Busqueda (BST)
- * implementado manualmente, sin usar librerias como java.util.
- *
- * Ejecucion sugerida:
- *   1. mvn compile
- *   2. mvn exec:java -Dexec.mainClass="umg.edu.progra.arboles.Principal"
- *
- * @author Walter Cordova
- */
 public class Principal {
 
     public static void main(String[] args) {
 
         ArbolBinarioBusqueda arbol = new ArbolBinarioBusqueda();
 
-        /*
-         * Insertamos estos valores para formar el siguiente BST:
-         *
-         *               50
-         *              /  \
-         *            30    70
-         *           /  \   / \
-         *          20  40 60  80
-         *         /
-         *        10
-         */
         int[] valores = { 50, 30, 70, 20, 40, 60, 80, 10 };
         for (int v : valores) {
             arbol.insertar(v);
@@ -38,6 +17,10 @@ public class Principal {
         System.out.println("Minimo:  " + arbol.minimo());
         System.out.println("Maximo:  " + arbol.maximo());
         System.out.println("Hojas:   " + arbol.contarHojas());
+
+        System.out.println("\n--- Problema 1: contarNodos ---");
+        System.out.println("Nodos recursivos: " + arbol.contarNodos());
+        System.out.println("Coincide con tamanio? " + (arbol.contarNodos() == arbol.tamanio()));
 
         System.out.println("\n--- Representacion visual (rotada 90 grados) ---");
         arbol.imprimirArbol();
@@ -80,18 +63,8 @@ public class Principal {
         System.out.println("Tamanio final: " + arbol.tamanio());
         System.out.println("Altura final:  " + arbol.altura());
 
-        /*
-         * Ejercicios
-         *
-         *  1. Implementar un metodo que devuelva la cantidad TOTAL de nodos
-         *     usando recursividad (sin usar el campo 'tamanio').
-         *  2. Implementar un metodo 'esBalanceado()' que indique si el arbol
-         *     esta balanceado (diferencia de alturas <= 1 en cada nodo).
-         *  3. Implementar 'esBSTValido()' que verifique que el arbol cumple
-         *     la propiedad de BST recorriendo los nodos.
-         *  4. Implementar un metodo para encontrar el ancestro comun mas
-         *     bajo (LCA) entre dos valores.
-         *  5. Implementar la inversion del arbol (espejo).
-         */
+        System.out.println("\n--- Problema 1 despues de eliminar ---");
+        System.out.println("Nodos recursivos final: " + arbol.contarNodos());
+        System.out.println("Coincide con tamanio final? " + (arbol.contarNodos() == arbol.tamanio()));
     }
 }
