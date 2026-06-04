@@ -208,3 +208,21 @@ Solo cuentan si los 5 problemas anteriores están correctos.
 ---
 
 > "Un BST bien implementado es más rápido que muchas estructuras prediseñadas… si entienden el porqué."
+
+
+## Solucion de problemas
+
+### Problema 1: contarNodos
+Se implemento un metodo recursivo que cuenta todos los nodos del arbol sin usar el atributo tamanio.
+
+### Problema 2: esBalanceado
+Se implemento una validacion para revisar si el arbol esta balanceado, verificando que la diferencia de altura entre subarboles no sea mayor a 1.
+
+### Problema 3: esBSTValido
+Se implemento una validacion recursiva usando limites minimos y maximos para comprobar que el arbol cumpla la propiedad BST.
+
+### Problema 4: ancestroComunMasBajo
+Se implemento el metodo para encontrar el ancestro comun mas bajo entre dos valores existentes dentro del arbol.
+
+### Problema 5: invertir
+Se implemento la inversion del arbol intercambiando los hijos izquierdo y derecho de cada nodo.
